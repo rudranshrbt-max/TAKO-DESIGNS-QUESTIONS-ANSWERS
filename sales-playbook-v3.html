@@ -1,0 +1,1842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tako Designs — Sales Playbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0c0e;
+    --surface: #16181c;
+    --border: #2a2d33;
+    --text: #ede9e3;
+    --text-dim: #a3a6ae;
+    --gold: #d9a350;
+
+    --cat-objection: #e2725b;
+    --cat-pricing: #d9a350;
+    --cat-process: #6f9ceb;
+    --cat-proof: #b79ced;
+    --cat-upsell: #6fbf8c;
+    --cat-trust: #5fb8c9;
+    --cat-technical: #e08fb0;
+    --cat-supplier-cn: #e8c94a;
+    --cat-supplier-in: #f47b3a;
+    --cat-supplier-vn: #5ec47a;
+    --cat-supplier-tr: #e05c5c;
+    --cat-supplier-bd: #4a9ee8;
+    --cat-supplier-mx: #c47adb;
+
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  header, main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  header { padding-top: 3rem; padding-bottom: 1.5rem; }
+  main { padding-bottom: 3rem; }
+
+  .brand {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin: 0 0 1rem;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(2rem, 6vw, 3rem);
+    margin: 0 0 0.6rem;
+  }
+
+  .subtitle {
+    color: var(--text-dim);
+    max-width: 36em;
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .divider {
+    height: 2px;
+    border-radius: 2px;
+    margin: 2rem 0;
+    background: linear-gradient(90deg,
+      var(--cat-objection), var(--cat-pricing), var(--cat-process), var(--cat-proof), var(--cat-upsell), var(--cat-trust), var(--cat-technical));
+    opacity: 0.55;
+  }
+
+  .controls { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
+
+  .search input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+  }
+  .search input::placeholder { color: var(--text-dim); }
+  .search input:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  .pills { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+  .pill {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-dim);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+  }
+  .pill span { opacity: 0.6; }
+  .pill:hover { color: var(--text); border-color: var(--text-dim); }
+  .pill:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  .pill[data-filter="all"].active { background: var(--gold); border-color: var(--gold); color: #1a1306; }
+  .pill.cat-objection.active { background: var(--cat-objection); border-color: var(--cat-objection); color: #1a0e0a; }
+  .pill.cat-pricing.active { background: var(--cat-pricing); border-color: var(--cat-pricing); color: #1a1306; }
+  .pill.cat-process.active { background: var(--cat-process); border-color: var(--cat-process); color: #0a1424; }
+  .pill.cat-proof.active { background: var(--cat-proof); border-color: var(--cat-proof); color: #160e2a; }
+  .pill.cat-upsell.active { background: var(--cat-upsell); border-color: var(--cat-upsell); color: #0a1f12; }
+  .pill.cat-trust.active { background: var(--cat-trust); border-color: var(--cat-trust); color: #08191c; }
+  .pill.cat-technical.active { background: var(--cat-technical); border-color: var(--cat-technical); color: #200a13; }
+  .pill.active span { opacity: 0.8; }
+
+  .cards { display: flex; flex-direction: column; gap: 1rem; }
+
+  .card {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    overflow: hidden;
+  }
+  .card.cat-objection { --accent: var(--cat-objection); }
+  .card.cat-pricing { --accent: var(--cat-pricing); }
+  .card.cat-process { --accent: var(--cat-process); }
+  .card.cat-proof { --accent: var(--cat-proof); }
+  .card.cat-upsell { --accent: var(--cat-upsell); }
+  .card.cat-trust { --accent: var(--cat-trust); }
+  .card.cat-technical { --accent: var(--cat-technical); }
+  .card.cat-supplier-cn { --accent: var(--cat-supplier-cn); }
+  .card.cat-supplier-in { --accent: var(--cat-supplier-in); }
+  .card.cat-supplier-vn { --accent: var(--cat-supplier-vn); }
+  .card.cat-supplier-tr { --accent: var(--cat-supplier-tr); }
+  .card.cat-supplier-bd { --accent: var(--cat-supplier-bd); }
+  .card.cat-supplier-mx { --accent: var(--cat-supplier-mx); }
+
+  /* Supplier section divider */
+  .section-header {
+    margin: 2.5rem 0 1.5rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .section-header h2 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0 0 0.3rem;
+    color: var(--text);
+  }
+  .section-header p {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  /* Country flag badge on supplier cards */
+  .country-flag {
+    font-size: 1.1rem;
+    line-height: 1;
+    position: absolute;
+    bottom: 0.8rem;
+    right: 1rem;
+    opacity: 0.55;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .pill.cat-supplier-cn.active { background: var(--cat-supplier-cn); border-color: var(--cat-supplier-cn); color: #1a1600; }
+  .pill.cat-supplier-in.active { background: var(--cat-supplier-in); border-color: var(--cat-supplier-in); color: #1a0a00; }
+  .pill.cat-supplier-vn.active { background: var(--cat-supplier-vn); border-color: var(--cat-supplier-vn); color: #041a0b; }
+  .pill.cat-supplier-tr.active { background: var(--cat-supplier-tr); border-color: var(--cat-supplier-tr); color: #1a0505; }
+  .pill.cat-supplier-bd.active { background: var(--cat-supplier-bd); border-color: var(--cat-supplier-bd); color: #04101a; }
+  .pill.cat-supplier-mx.active { background: var(--cat-supplier-mx); border-color: var(--cat-supplier-mx); color: #150a1a; }
+
+  .card-number {
+    position: absolute;
+    top: 0.4rem;
+    right: 1rem;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 3rem;
+    line-height: 1;
+    color: var(--accent);
+    opacity: 0.09;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .card-head {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+  }
+
+  .copy-btn {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    background: transparent;
+    border: 1px solid var(--border);
+    padding: 0.35rem 0.7rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .copy-btn:hover { color: var(--text); border-color: var(--text-dim); }
+  .copy-btn.copied { color: var(--cat-upsell); border-color: var(--cat-upsell); }
+  .copy-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  .card-question {
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: var(--text);
+    margin: 0 0 0.6rem;
+  }
+
+  .card-answer {
+    position: relative;
+    z-index: 1;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--text-dim);
+    margin: 0;
+  }
+
+  .hidden { display: none !important; }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    padding: 2.5rem 0;
+  }
+
+  footer {
+    text-align: center;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    padding: 2rem 0 3rem;
+    opacity: 0.55;
+  }
+
+  @media (max-width: 600px) {
+    header { padding-top: 2rem; }
+    .card { padding: 1rem 1.1rem; }
+    .card-number { font-size: 2.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <p class="brand">Tako Designs</p>
+  <h1>Sales Playbook</h1>
+  <p class="subtitle">100 ready-to-send scripts — every objection, price point, and buyer type from billionaire to broke. Search a keyword, filter by type, tap copy, paste into WhatsApp.</p>
+  <div class="divider"></div>
+</header>
+
+<main>
+  <div class="controls">
+    <div class="search">
+      <input type="text" id="search" placeholder="Search a question or keyword…" />
+    </div>
+    <div class="pills" id="pills">
+      <button class="pill active" data-filter="all">All <span>150</span></button>
+      <button class="pill cat-objection" data-filter="objection">Objections <span>17</span></button>
+      <button class="pill cat-pricing" data-filter="pricing">Pricing <span>14</span></button>
+      <button class="pill cat-process" data-filter="process">Process <span>20</span></button>
+      <button class="pill cat-proof" data-filter="proof">Proof <span>6</span></button>
+      <button class="pill cat-upsell" data-filter="upsell">Upsell <span>16</span></button>
+      <button class="pill cat-trust" data-filter="trust">Trust <span>13</span></button>
+      <button class="pill cat-technical" data-filter="technical">Technical <span>14</span></button>
+      <button class="pill cat-supplier-cn" data-filter="supplier-cn">🇨🇳 China <span>8</span></button>
+      <button class="pill cat-supplier-in" data-filter="supplier-in">🇮🇳 India <span>4</span></button>
+      <button class="pill cat-supplier-vn" data-filter="supplier-vn">🇻🇳 Vietnam <span>4</span></button>
+      <button class="pill cat-supplier-tr" data-filter="supplier-tr">🇹🇷 Turkey <span>4</span></button>
+      <button class="pill cat-supplier-bd" data-filter="supplier-bd">🇧🇩 Bangladesh <span>4</span></button>
+      <button class="pill cat-supplier-mx" data-filter="supplier-mx">🇲🇽 Mexico <span>4</span></button>
+      <button class="pill cat-supplier-us" data-filter="supplier-us">🇺🇸 USA <span>6</span></button>
+      <button class="pill cat-supplier-eu" data-filter="supplier-eu">🇪🇺 Europe <span>6</span></button>
+      <button class="pill cat-universal" data-filter="universal">🌐 Universal <span>10</span></button>
+    </div>
+  </div>
+
+
+  <div class="cards" id="cards">
+
+    <article class="card cat-objection">
+      <span class="card-number">01</span>
+      <div class="card-head">
+        <span class="tag">Objection</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"We don't need a website."</p>
+      <p class="card-answer">Right now when someone searches your salon name, nothing comes up — your competitor's profile does. Every day without this, you're invisible to people actively looking for you. Around your area, people search online to compare salons before visiting — the website acts as your personality online, showcasing your services, work, and pictures so they choose you. Want me to put together a quick mockup with your salon's name so you can see it live?</p>
+    </article>
+
+    <article class="card cat-pricing">
+      <span class="card-number">02</span>
+      <div class="card-head">
+        <span class="tag">Pricing</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"What's the pricing?"</p>
+      <p class="card-answer">We start from ₹5,999 and go up to ₹34,999. There are two packages in between — ₹12,999 and ₹19,999. Want me to send a quick mockup so you can see what fits your salon best?</p>
+    </article>
+
+    <article class="card cat-upsell">
+      <span class="card-number">03</span>
+      <div class="card-head">
+        <span class="tag">Upsell</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Do you make Shopify stores too?"</p>
+      <p class="card-answer">Yes, we do — that's ₹12,999. Want me to show you a quick example of one?</p>
+    </article>
+
+    <article class="card cat-pricing">
+      <span class="card-number">04</span>
+      <div class="card-head">
+        <span class="tag">Pricing</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"What's the difference between 12,999 and 19,999?"</p>
+      <p class="card-answer">12,999 gets you online — basic SEO, solid design. 19,999 gets you found — best SEO plus AI search engine optimization (people now search via ChatGPT/Google AI, not just Google), smoother and more optimized animations/sections, and your domain is covered free for a year, so zero hidden cost. Want me to mock up both so you can compare?</p>
+    </article>
+
+    <article class="card cat-objection">
+      <span class="card-number">05</span>
+      <div class="card-head">
+        <span class="tag">Objection</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"We're not interested."</p>
+      <p class="card-answer">Totally fair — can I ask what's holding you back? Is it the package itself, or something with the investment side? Either way, let me show you a free mockup first — no pressure, just so you can see what it'd actually look like.</p>
+    </article>
+
+    <article class="card cat-process">
+      <span class="card-number">06</span>
+      <div class="card-head">
+        <span class="tag">Process</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"How do we start?"</p>
+      <p class="card-answer">I checked out your Instagram/Google profile — was curious how people actually book appointments with you. (If they say WhatsApp/calls) — that's exactly the gap. A website would showcase your work, customer numbers, testimonials, booking, and location all in one place — so people land somewhere that builds trust before they even message you. Want me to start with a quick mockup using your salon's name?</p>
+    </article>
+
+    <article class="card cat-objection">
+      <span class="card-number">07</span>
+      <div class="card-head">
+        <span class="tag">Objection</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"We already use a third party."</p>
+      <p class="card-answer">What does the third party actually do for you — mainly ads/traffic? (After they answer) — so they're driving people to your page, but once someone lands, do they see why you over the salon next door? That's the gap — a website is your storefront. They're just sending traffic to an empty room. We build the place that converts that traffic into bookings. Want me to show you a quick example of what that storefront could look like for your salon?</p>
+    </article>
+
+    <article class="card cat-process">
+      <span class="card-number">08</span>
+      <div class="card-head">
+        <span class="tag">Process</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"How long does it take to build?"</p>
+      <p class="card-answer">Depends on the package — basic builds (12,999) take 3-5 days, premium builds (19,999+) take 5-7 days since they include more sections, animations, and SEO setup. Want me to start the mockup today so you can see progress within 48 hours?</p>
+    </article>
+
+    <article class="card cat-process">
+      <span class="card-number">09</span>
+      <div class="card-head">
+        <span class="tag">Process</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Can we make changes after it's live?"</p>
+      <p class="card-answer">Yes — minor content/text/image changes are included for the first month free. After that, edits are quick and low-cost since it's all custom-built for your salon, not a rigid template. Want me to show you how easy the admin panel is to use with a quick demo?</p>
+    </article>
+
+    <article class="card cat-objection">
+      <span class="card-number">10</span>
+      <div class="card-head">
+        <span class="tag">Objection</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"What if it doesn't bring more customers?"</p>
+      <p class="card-answer">The website itself doesn't "bring" customers — it converts the ones already searching for you. Right now those people are choosing your competitor by default because they show up online and you don't. This isn't a gamble, it's closing a gap that's costing you bookings every single day. Want me to pull up how many people in your area are searching for salons right now so you can see the demand yourself?</p>
+    </article>
+
+    <article class="card cat-upsell">
+      <span class="card-number">11</span>
+      <div class="card-head">
+        <span class="tag">Upsell</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Can you also handle our Instagram/social media?"</p>
+      <p class="card-answer">We focus on building the website as your core asset — but we design it to plug straight into your Instagram (testimonials, photos, booking links all sync). If you want, we can also set up a simple automation so new bookings or reviews auto-post — that's a separate add-on. Want me to show you how that connection would look?</p>
+    </article>
+
+    <article class="card cat-upsell">
+      <span class="card-number">12</span>
+      <div class="card-head">
+        <span class="tag">Upsell</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"What if I want to add online payment / booking system later?"</p>
+      <p class="card-answer">No problem — the website is built to scale. Booking and payment integration can be added on top without rebuilding anything. Most clients start with the website first to establish presence, then add booking once they see the traffic. Want me to include a basic booking form in the mockup so you can see how it'd feel?</p>
+    </article>
+
+    <article class="card cat-proof">
+      <span class="card-number">13</span>
+      <div class="card-head">
+        <span class="tag">Proof</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Who else have you built websites for? Can we see examples?"</p>
+      <p class="card-answer">Yes — I've built for salons like Cravve, MSR Gent, and Looks Salon. Let me send you 1-2 live links so you can see exactly what your competitors in other cities are already running. Want me to send those now?</p>
+    </article>
+
+    <article class="card cat-objection">
+      <span class="card-number">14</span>
+      <div class="card-head">
+        <span class="tag">Objection</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Why should we pay this much when we can get a cheaper website from someone else?"</p>
+      <p class="card-answer">Cheaper websites usually mean a template that looks the same as 50 other salons — no SEO, no AI search visibility, slow loading, and no real conversion design. What you're paying for here isn't "a website," it's a system built specifically to turn searches into bookings for your salon. Want me to show you a side-by-side — a generic template vs. what we'd build for you?</p>
+    </article>
+
+    <article class="card cat-process">
+      <span class="card-number">15</span>
+      <div class="card-head">
+        <span class="tag">Process</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"How do you get paid / what's the payment process?"</p>
+      <p class="card-answer">Usually 50% advance to start, 50% on delivery before going live. For bigger packages we can also split it into milestones if needed. Want me to send the payment breakdown along with the mockup so everything's clear upfront?</p>
+    </article>
+
+    <article class="card cat-pricing">
+      <span class="card-number">16</span>
+      <div class="card-head">
+        <span class="tag">Pricing</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"What if we want to negotiate the price down?"</p>
+      <p class="card-answer">These prices are already built around what each package actually delivers — cutting the number usually means cutting a section, an animation, or the SEO layer, not just applying a discount. If budget's tight, I'd rather adjust the package than the price — start with a smaller version now and add sections later as you grow. Want me to put together a lighter version that fits your budget without cutting corners on what's included?</p>
+    </article>
+
+    <article class="card cat-trust">
+      <span class="card-number">17</span>
+      <div class="card-head">
+        <span class="tag">Trust</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Can we see the website before we pay anything?"</p>
+      <p class="card-answer">Yes — that's exactly how this works. I build a live demo using your salon's actual name, photos, and details first, so you can open it on your own phone and see it running before any money changes hands. You only pay once you're happy with what you see. Want me to start that demo today?</p>
+    </article>
+
+    <article class="card cat-trust">
+      <span class="card-number">18</span>
+      <div class="card-head">
+        <span class="tag">Trust</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"What if you disappear after taking the payment?"</p>
+      <p class="card-answer">That's why payment is split — 50% to start, 50% on delivery before the site goes live — so you're never paying in full for something that doesn't exist yet. You also see the demo working before the first payment is made. And if anything's not right after delivery, fixes in the first month are included free. Want me to send the payment breakdown alongside the demo so it's clear upfront?</p>
+    </article>
+
+    <article class="card cat-trust">
+      <span class="card-number">19</span>
+      <div class="card-head">
+        <span class="tag">Trust</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"How old are you — are you even a real business?"</p>
+      <p class="card-answer">I run Tako Designs as a one-person studio — which is actually why you're getting a custom-built site at this price instead of an agency markup for the same work. What matters is the output: you can see it live before paying, and check the salons already running this — Cravve, MSR Gent, Looks Salon. Want me to send those live links so you can judge it on the work itself?</p>
+    </article>
+
+    <article class="card cat-pricing">
+      <span class="card-number">20</span>
+      <div class="card-head">
+        <span class="tag">Pricing</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Is this a one-time payment, or do we pay every month?"</p>
+      <p class="card-answer">One-time for the website build itself — there's no recurring fee just to "have" the site. The only ongoing cost is hosting/domain renewal after the first free year, which is a small yearly amount. Automation add-ons like WhatsApp bots or reminders, if you choose those later, are separate. Want me to break down exactly what's one-time vs. yearly for your package?</p>
+    </article>
+
+    <article class="card cat-pricing">
+      <span class="card-number">21</span>
+      <div class="card-head">
+        <span class="tag">Pricing</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Do you offer any discounts?"</p>
+      <p class="card-answer">I keep pricing flat and fair for everyone — there's no inflated sticker price to discount from, so what you see is what it actually costs to build. What I can do instead is adjust scope: start with a smaller package now and add sections — booking, animations, AI search SEO — later once the site's already proving itself. Want me to show you what a phased version would look like?</p>
+    </article>
+
+    <article class="card cat-objection">
+      <span class="card-number">22</span>
+      <div class="card-head">
+        <span class="tag">Objection</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"We don't have professional photos — can you still build the site?"</p>
+      <p class="card-answer">Yes — most salons start exactly there. For the demo, I use stock visuals that match your salon's style so you can see the layout and feel immediately. Once you're happy, even phone photos of your space, staff, and work look great with the right editing and layout — professional photography helps later, but it's not a blocker to starting. Want me to build the demo with placeholder visuals so you can see the structure first?</p>
+    </article>
+
+    <article class="card cat-objection">
+      <span class="card-number">23</span>
+      <div class="card-head">
+        <span class="tag">Objection</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"We're a small, local salon — is this even worth it for us?"</p>
+      <p class="card-answer">Size isn't really the factor — visibility is. A small salon with a strong online presence often outperforms a bigger one that's invisible online, because the person searching nearby books whoever shows up first and looks trustworthy. This isn't about competing with big chains, it's about making sure your existing customers — and the new ones searching right now — actually find you. Want me to check how many people near you are searching for salons so you can see the local demand?</p>
+    </article>
+
+    <article class="card cat-objection">
+      <span class="card-number">24</span>
+      <div class="card-head">
+        <span class="tag">Objection</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"How is this different from just making a free Instagram page?"</p>
+      <p class="card-answer">Instagram is great for showing your work, but it's rented space — the algorithm decides who sees your posts, and someone has to follow you first to find you. A website shows up when someone searches your salon name or "salon near me," works as your full profile — services, pricing, booking, reviews, location — without needing an account, and you actually own it. We also connect your Instagram into the site, so you get both, not one instead of the other. Want me to show you what that combination looks like?</p>
+    </article>
+
+    <article class="card cat-technical">
+      <span class="card-number">25</span>
+      <div class="card-head">
+        <span class="tag">Technical</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Will the website actually work properly on mobile phones?"</p>
+      <p class="card-answer">Yes — every site is built mobile-first, since most of your customers will check it on their phone before walking in or messaging you. That means the layout, buttons, and booking flow are designed for a phone screen first, then scaled up for tablets and desktops, not the other way around. Want me to send you the demo link so you can open it on your own phone and try it yourself?</p>
+    </article>
+
+    <article class="card cat-technical">
+      <span class="card-number">26</span>
+      <div class="card-head">
+        <span class="tag">Technical</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Will our website actually show up when people search on Google?"</p>
+      <p class="card-answer">It depends on the package, but every build includes basic SEO — proper titles, descriptions, and structure so Google can read and rank the page. The 19,999+ tier goes further with full SEO plus AI search optimization, since people increasingly ask ChatGPT or Google's AI for recommendations, not just type into the search bar. No one can guarantee a #1 spot — that takes time and content — but the foundation is built in from day one. Want me to show you what's included at each tier?</p>
+    </article>
+
+    <article class="card cat-technical">
+      <span class="card-number">27</span>
+      <div class="card-head">
+        <span class="tag">Technical</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Is the website secure — do we get HTTPS/SSL?"</p>
+      <p class="card-answer">Yes — every site is deployed with HTTPS/SSL by default, so visitors see the secure padlock and their connection is encrypted. This also matters for Google rankings, since non-secure sites get pushed down in search results. It's included, not an add-on. Want me to point this out on the demo once it's live?</p>
+    </article>
+
+    <article class="card cat-process">
+      <span class="card-number">28</span>
+      <div class="card-head">
+        <span class="tag">Process</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Do you provide hosting, or do we need to buy that separately?"</p>
+      <p class="card-answer">Hosting is included as part of the build — everything is set up so the site is live and working from day one, no separate technical setup on your end. The domain (yoursalonname.com) is covered free for the first year with the higher-tier packages. After that, it's a small yearly renewal, which I can either manage for you or hand over so you're in full control. Want me to confirm what's included for the package you're looking at?</p>
+    </article>
+
+    <article class="card cat-process">
+      <span class="card-number">29</span>
+      <div class="card-head">
+        <span class="tag">Process</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"What happens to the site if we stop paying for hosting?"</p>
+      <p class="card-answer">If hosting/domain renewal lapses, the site simply goes offline until it's renewed — nothing is deleted, and there's no penalty. It's the same as any website or app subscription. Most salons treat it like rent for their online storefront — a small yearly cost to stay visible to everyone searching for you. Want me to include the renewal cost upfront so there's no surprise later?</p>
+    </article>
+
+    <article class="card cat-trust">
+      <span class="card-number">30</span>
+      <div class="card-head">
+        <span class="tag">Trust</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Do we sign any kind of agreement before starting?"</p>
+      <p class="card-answer">Yes — once you've seen the demo and we agree on the package, I send a simple written agreement covering what's included, the timeline, and the payment split (50/50). It protects both sides — you know exactly what you're getting, and the scope is locked in before any work begins. Want me to send a sample agreement so you can see what it covers?</p>
+    </article>
+
+    <article class="card cat-process">
+      <span class="card-number">31</span>
+      <div class="card-head">
+        <span class="tag">Process</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"What if our prices, services, or timings change later?"</p>
+      <p class="card-answer">That's normal, and it's exactly why the site isn't built as a static template — content like services, prices, and hours lives in sections that can be updated without rebuilding anything. Small updates like that are part of the free first-month support, and after that they're quick, low-cost edits. Want me to show you which sections are easiest for you to update yourself?</p>
+    </article>
+
+    <article class="card cat-process">
+      <span class="card-number">32</span>
+      <div class="card-head">
+        <span class="tag">Process</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Will you teach us how to update the website ourselves?"</p>
+      <p class="card-answer">Yes — for sites with an admin panel, I walk you through it with a short screen-share so you can update photos, offers, or hours yourself whenever you want. If you'd rather not touch it at all, that's fine too — just message me the change and I'll handle it. Want me to include a quick walkthrough video with the final delivery?</p>
+    </article>
+
+    <article class="card cat-technical">
+      <span class="card-number">33</span>
+      <div class="card-head">
+        <span class="tag">Technical</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Can the website be in more than one language?"</p>
+      <p class="card-answer">Yes — multilingual sites are something I've built before for international clients, where the site automatically shows the right language based on the visitor's location or a simple toggle. For salons, this is especially useful if you get tourists or expats searching in English alongside local customers searching in Hindi or another regional language. Want me to include a language toggle in the demo so you can see how it'd look?</p>
+    </article>
+
+    <article class="card cat-process">
+      <span class="card-number">34</span>
+      <div class="card-head">
+        <span class="tag">Process</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"We already have a website — can you redo/redesign it instead?"</p>
+      <p class="card-answer">Yes — a lot of my work is exactly this. I look at what's currently live, keep anything that's working (your content, photos, branding), and rebuild the design, speed, and SEO from scratch around it. The old site usually stays live while the new one is built, so there's zero downtime — we just switch the domain over once you approve the new version. Want me to take a look at your current site and show you what an upgrade would look like?</p>
+    </article>
+
+    <article class="card cat-technical">
+      <span class="card-number">35</span>
+      <div class="card-head">
+        <span class="tag">Technical</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"How fast will the website actually load?"</p>
+      <p class="card-answer">Fast — every site is built as a single optimized file with compressed images and no bloated plugins, which is the opposite of how most template-based sites are built. Slow sites lose visitors within seconds and get penalized by Google, so speed isn't an afterthought — it's part of the build from the first line of code. Want me to run a speed test on the demo once it's live so you can see the numbers yourself?</p>
+    </article>
+
+    <article class="card cat-upsell">
+      <span class="card-number">36</span>
+      <div class="card-head">
+        <span class="tag">Upsell</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Can you add a WhatsApp bot that auto-replies to customer messages?"</p>
+      <p class="card-answer">Yes — this is one of the most useful add-ons for salons. The bot can answer common questions (timings, pricing, location), confirm bookings, and only hand off to you when a customer needs something specific — so you're not glued to your phone all day. It plugs straight into the website's booking flow, so everything stays in sync. Want me to show you a quick demo of how that conversation would look?</p>
+    </article>
+
+    <article class="card cat-upsell">
+      <span class="card-number">37</span>
+      <div class="card-head">
+        <span class="tag">Upsell</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Can the system send automatic appointment reminders?"</p>
+      <p class="card-answer">Yes — once someone books through the site, the system can automatically send a WhatsApp reminder the day before (and optionally a few hours before) their appointment, which noticeably cuts down no-shows. It's a simple automation layer on top of your booking system, no extra app for you to manage. Want me to show you how the reminder message would look from the customer's side?</p>
+    </article>
+
+    <article class="card cat-upsell">
+      <span class="card-number">38</span>
+      <div class="card-head">
+        <span class="tag">Upsell</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"We have more than one branch — can one website cover all locations?"</p>
+      <p class="card-answer">Yes — the site can list multiple branches with their own address, hours, and contact details, while sharing one overall design and booking system. Customers pick their nearest branch, and you manage everything from one place instead of juggling separate pages or profiles per location. Want me to mock up how a multi-location layout would look for your salons?</p>
+    </article>
+
+    <article class="card cat-upsell">
+      <span class="card-number">39</span>
+      <div class="card-head">
+        <span class="tag">Upsell</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Do you also set up or optimize our Google Business Profile?"</p>
+      <p class="card-answer">Yes — this is a quick but high-impact add-on. A properly set up Google Business Profile (correct category, photos, hours, services, and a link to your new site) is often what shows up before the website itself when someone searches nearby, so the two work together. Want me to check your current profile and tell you what's missing?</p>
+    </article>
+
+    <article class="card cat-process">
+      <span class="card-number">40</span>
+      <div class="card-head">
+        <span class="tag">Process</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"We're based outside India — can you still build for us, and how would payment work?"</p>
+      <p class="card-answer">Yes — I've already built for international clients. Pricing for international clients is quoted in USD rather than INR, and payment can be handled through international-friendly methods so there's no hassle on either side. The build process and demo-first approach stay exactly the same, just adjusted for your time zone and currency. Want me to send you the USD pricing for your package?</p>
+    </article>
+
+    <article class="card cat-objection">
+      <span class="card-number">41</span>
+      <div class="card-head">
+        <span class="tag">Objection</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"I don't have any money for this right now."</p>
+      <p class="card-answer">Totally understand — money's tight for everyone right now. That's exactly why I start with a free mockup, zero cost, zero risk. You only pay once you see it and decide it's worth it. Want me to send you a quick preview using your business name?</p>
+    </article>
+
+    <article class="card cat-objection">
+      <span class="card-number">42</span>
+      <div class="card-head">
+        <span class="tag">Objection</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"I can build this myself for free using Wix/Canva."</p>
+      <p class="card-answer">You absolutely could — and a lot of owners try that first. The difference is time and conversion: a DIY site usually takes 20-30 hours to get right, and most templates look generic, so visitors bounce. I deliver a custom-built site in days, designed to convert visitors into bookings. Want me to show you a side-by-side of a template vs. a custom build so you can see the gap yourself?</p>
+    </article>
+
+    <article class="card cat-objection">
+      <span class="card-number">43</span>
+      <div class="card-head">
+        <span class="tag">Objection</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"My nephew/cousin can build it for free."</p>
+      <p class="card-answer">That's great if they have the time and skill for it — family rates are hard to beat! Just keep in mind: 'free' usually means it's not their priority, so it can sit unfinished for weeks or months. I treat this as my actual business, so it gets built, tested, and live fast. If it doesn't move forward with them in a week or two, I'm here. Want me to send a free mockup in the meantime so you have a backup ready?</p>
+    </article>
+
+    <article class="card cat-objection">
+      <span class="card-number">44</span>
+      <div class="card-head">
+        <span class="tag">Objection</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"I need to think about it."</p>
+      <p class="card-answer">Of course, take your time — it's your business and your call. While you're thinking, is there anything specific holding you back — price, timeline, or just wanting to see more first? If it's 'seeing more,' I can have a mockup ready before you've even finished thinking it over.</p>
+    </article>
+
+    <article class="card cat-objection">
+      <span class="card-number">45</span>
+      <div class="card-head">
+        <span class="tag">Objection</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Send me details on email, I'll check later."</p>
+      <p class="card-answer">Happy to — but 'later' usually means it gets buried under 50 other emails. Quick question: if I send you a working preview link right now instead of a PDF, would you take 30 seconds to glance at it while we're talking? It's faster for both of us.</p>
+    </article>
+
+    <article class="card cat-objection">
+      <span class="card-number">46</span>
+      <div class="card-head">
+        <span class="tag">Objection</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"This sounds like a scam / too good to be true."</p>
+      <p class="card-answer">Fair to be cautious — there's a lot of noise out there. Here's the thing: I'm not asking for any payment upfront. I build a free mockup first, you see exactly what you're getting, and only pay if you're happy. No site, no payment, no risk on your end. Want me to start that mockup now so you can judge for yourself?</p>
+    </article>
+
+    <article class="card cat-objection">
+      <span class="card-number">47</span>
+      <div class="card-head">
+        <span class="tag">Objection</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"We're too small/new for a website."</p>
+      <p class="card-answer">Honestly, 'too small' is the best time — you're building your reputation from day one, and the businesses that look established early get taken seriously faster. A clean website is one of the cheapest ways to look 5x bigger than you actually are right now. Want me to mock up how your business would look online?</p>
+    </article>
+
+    <article class="card cat-objection">
+      <span class="card-number">48</span>
+      <div class="card-head">
+        <span class="tag">Objection</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"I don't trust online stuff / I'm not a tech person."</p>
+      <p class="card-answer">Totally fair — and you don't need to be. I handle everything technical; you just tell me what you want it to say and look like, and I build it. Once it's live, it basically runs itself. Want me to walk you through exactly what the process looks like, step by step, so there's no mystery?</p>
+    </article>
+
+    <article class="card cat-objection">
+      <span class="card-number">49</span>
+      <div class="card-head">
+        <span class="tag">Objection</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Why should I pay you when there are cheaper freelancers on Fiverr?"</p>
+      <p class="card-answer">You can definitely find cheaper — and sometimes that's the right call for a basic project. The difference is usually speed of communication, revisions, and whether the person actually understands your industry. I've built specifically for salons/local businesses, so I'm not learning your market on your dime. Want me to show you examples from businesses like yours so you can compare quality directly?</p>
+    </article>
+
+    <article class="card cat-pricing">
+      <span class="card-number">50</span>
+      <div class="card-head">
+        <span class="tag">Pricing</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Can you do it cheaper than 5,999?"</p>
+      <p class="card-answer">I get it — every rupee counts when you're starting out. 5,999 is already our entry point and covers a fully custom design, not a template. What I can do is break it into two payments so it's easier on cash flow — half now, half when it's live. Want me to set that up?</p>
+    </article>
+
+    <article class="card cat-pricing">
+      <span class="card-number">51</span>
+      <div class="card-head">
+        <span class="tag">Pricing</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Is there a monthly payment plan?"</p>
+      <p class="card-answer">Yes — for the larger packages (19,999+), I can split it across 2-3 monthly payments so it doesn't hit your cash flow all at once. The site still goes live after the first payment. Want me to draft a payment schedule that works for your budget?</p>
+    </article>
+
+    <article class="card cat-pricing">
+      <span class="card-number">52</span>
+      <div class="card-head">
+        <span class="tag">Pricing</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"What's included in the 34,999 package exactly?"</p>
+      <p class="card-answer">The top package includes everything in the lower tiers plus: a full booking/appointment system with an admin dashboard, an AI chatbot trained on your business info, advanced animations and 3D visual elements, multi-theme switching, and priority support for 3 months. It's built for businesses that want to look like a major brand from day one. Want me to mock up that version specifically for you?</p>
+    </article>
+
+    <article class="card cat-pricing">
+      <span class="card-number">53</span>
+      <div class="card-head">
+        <span class="tag">Pricing</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Do you charge extra for revisions?"</p>
+      <p class="card-answer">First round of revisions is always free — I want you to be fully happy with the design before anything goes live. After launch, the first month of small text/image edits is also free. Beyond that, larger changes are quoted separately, but they're usually quick and affordable since everything's custom-coded for you. Want me to outline what counts as a 'small edit' so there's no confusion later?</p>
+    </article>
+
+    <article class="card cat-pricing">
+      <span class="card-number">54</span>
+      <div class="card-head">
+        <span class="tag">Pricing</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"What if I'm a huge brand — do you have an enterprise package?"</p>
+      <p class="card-answer">Yes — for larger operations with multiple locations, dedicated booking systems, custom integrations, or ongoing development needs, I put together a custom enterprise quote based on scope. These typically start much higher than the listed packages and include a dedicated build timeline and priority support. Want to hop on a call so I can scope exactly what you need and give you an accurate number?</p>
+    </article>
+
+    <article class="card cat-pricing">
+      <span class="card-number">55</span>
+      <div class="card-head">
+        <span class="tag">Pricing</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Can I just pay whatever I think it's worth after seeing it?"</p>
+      <p class="card-answer">I love the confidence in the offer, but I have to keep pricing consistent — otherwise it's not fair to other clients paying full price. What I CAN do is show you the mockup completely free first. If you love it and it's worth more to you than the listed price, that's a conversation we can have. But the baseline stays the baseline. Want me to start that mockup?</p>
+    </article>
+
+    <article class="card cat-pricing">
+      <span class="card-number">56</span>
+      <div class="card-head">
+        <span class="tag">Pricing</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Why is the premium package double the basic one?"</p>
+      <p class="card-answer">Because it's not just 'more pages' — it's a different category of build. The basic gets you online. The premium gets you a system: booking, automation, AI chatbot, advanced SEO so AI search tools recommend you too. Businesses that invest in the premium tier typically see it pay for itself within the first month of bookings. Want me to break down the ROI math for your specific business?</p>
+    </article>
+
+    <article class="card cat-pricing">
+      <span class="card-number">57</span>
+      <div class="card-head">
+        <span class="tag">Pricing</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"What currency do you charge in for international clients?"</p>
+      <p class="card-answer">For clients outside India, I quote in USD — typically ranging from $249 for a starter build up to $1,499+ for a full premium build with booking, chatbot, and 3D elements, plus an optional monthly retainer for updates. Payment is handled through international-friendly methods so there's no friction. Want me to send the USD breakdown for your specific needs?</p>
+    </article>
+
+    <article class="card cat-pricing">
+      <span class="card-number">58</span>
+      <div class="card-head">
+        <span class="tag">Pricing</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Is the price negotiable?"</p>
+      <p class="card-answer">The packages themselves are fixed to keep things fair across all clients — but the SCOPE is flexible. If budget's the concern, I can trim a few sections or features to bring it into a tier that fits, without making it look stripped down. Want me to put together a version that fits your exact budget?</p>
+    </article>
+
+    <article class="card cat-process">
+      <span class="card-number">59</span>
+      <div class="card-head">
+        <span class="tag">Process</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"What do you need from me to get started?"</p>
+      <p class="card-answer">Just the basics to begin: your business name, logo (if you have one), a few photos of your space/work, your services and prices, and your contact/booking info. I can start the mockup with placeholder content if you don't have everything ready — we fill in the real details once you're happy with the design. Want me to start today?</p>
+    </article>
+
+    <article class="card cat-process">
+      <span class="card-number">60</span>
+      <div class="card-head">
+        <span class="tag">Process</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"What happens after I say yes?"</p>
+      <p class="card-answer">I'll send you a short form (or just message me directly) with the basics — business name, services, photos, hours, contact info. I start building immediately and send you a live preview link within 2-3 days for the basic package, or 5-7 for premium. You review, request any tweaks, and once you're happy, it goes live on your domain. Simple as that.</p>
+    </article>
+
+    <article class="card cat-process">
+      <span class="card-number">61</span>
+      <div class="card-head">
+        <span class="tag">Process</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Do I need to buy a domain myself?"</p>
+      <p class="card-answer">You can either buy your own domain (I'll guide you through it — takes 5 minutes) or I can register it for you and include the first year free in the premium package. Either way, the site is built and hosted so it's live and working before the domain question even matters. Want me to explain both options?</p>
+    </article>
+
+    <article class="card cat-process">
+      <span class="card-number">62</span>
+      <div class="card-head">
+        <span class="tag">Process</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Will the website work on mobile phones?"</p>
+      <p class="card-answer">Yes — every site I build is fully responsive, meaning it looks and works perfectly on phones, tablets, and desktops. Most of your customers will be finding you on their phones, so this isn't optional — it's the priority. Want me to send a mobile preview link so you can test it on your own phone right now?</p>
+    </article>
+
+    <article class="card cat-process">
+      <span class="card-number">63</span>
+      <div class="card-head">
+        <span class="tag">Process</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Can I see other websites you've built before deciding?"</p>
+      <p class="card-answer">Absolutely — let me send you 2-3 live links from businesses similar to yours so you can click around and get a real feel for the quality. Takes 30 seconds and tells you more than any description could. Sending now.</p>
+    </article>
+
+    <article class="card cat-process">
+      <span class="card-number">64</span>
+      <div class="card-head">
+        <span class="tag">Process</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"How do you communicate during the project — calls, WhatsApp, email?"</p>
+      <p class="card-answer">Whatever's easiest for you — most clients prefer WhatsApp since it's quick back-and-forth, but I'm happy to hop on a call if you want to talk through the vision first. I'll keep you updated with preview links as I build, so you're never left wondering what's happening.</p>
+    </article>
+
+    <article class="card cat-process">
+      <span class="card-number">65</span>
+      <div class="card-head">
+        <span class="tag">Process</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"What if I don't like the design when it's done?"</p>
+      <p class="card-answer">Then we fix it — that's what the free revision round is for. I'd rather adjust the design until it's right than leave you with something you're not proud of. Most of the time it's small tweaks (colors, layout, wording), not a full redo. Want me to start with a mockup so you can react early, before too much is locked in?</p>
+    </article>
+
+    <article class="card cat-process">
+      <span class="card-number">66</span>
+      <div class="card-head">
+        <span class="tag">Process</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Can you match our existing brand colors and logo style?"</p>
+      <p class="card-answer">Yes — that's actually the starting point. I'll build the entire site around your existing branding so it feels like a natural extension of what you already have, not something bolted on. If you don't have brand colors locked in yet, I can suggest a palette based on your industry and vibe. Want me to start with your logo as the anchor?</p>
+    </article>
+
+    <article class="card cat-process">
+      <span class="card-number">67</span>
+      <div class="card-head">
+        <span class="tag">Process</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"How will customers actually book through the website?"</p>
+      <p class="card-answer">Depends on the package — basic sites include a 'Book Now' button linking to WhatsApp or a call, so zero friction for customers who already message you. Premium sites include a full in-site booking form with date/time selection and an admin dashboard where you manage all bookings in one place. Want me to show you both versions so you can pick what fits your workflow?</p>
+    </article>
+
+    <article class="card cat-process">
+      <span class="card-number">68</span>
+      <div class="card-head">
+        <span class="tag">Process</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"What if my business info changes after launch — new services, new prices?"</p>
+      <p class="card-answer">Totally normal — businesses evolve. Small updates like new services or price changes are covered in your first free month, and after that they're quick, low-cost edits since everything's custom-built and easy for me to update. Want me to set up a simple way for you to request changes whenever you need?</p>
+    </article>
+
+    <article class="card cat-proof">
+      <span class="card-number">69</span>
+      <div class="card-head">
+        <span class="tag">Proof</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"How many websites have you actually built?"</p>
+      <p class="card-answer">I've built and launched 10+ premium sites for salons, barbers, cafes, and beauty academies across India, Nepal, Iraq, and Egypt — all with the same custom luxury design language: 3D elements, theme switching, booking systems, and AI chatbots. Want me to send a couple of live links so you can see the range yourself?</p>
+    </article>
+
+    <article class="card cat-proof">
+      <span class="card-number">70</span>
+      <div class="card-head">
+        <span class="tag">Proof</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Do you have any testimonials or reviews?"</p>
+      <p class="card-answer">Yes — happy to share what previous clients have said about working with me, especially around turnaround time and how the site looked compared to what they expected. Want me to send a couple over, along with the live sites so you can see the results that go with them?</p>
+    </article>
+
+    <article class="card cat-proof">
+      <span class="card-number">71</span>
+      <div class="card-head">
+        <span class="tag">Proof</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Have you worked with international clients before?"</p>
+      <p class="card-answer">Yes — I've built for clients in Iraq, Nepal, and Egypt, all fully remote, with sites live and running today. The process is the same regardless of location: free mockup first, then build once you're happy. Want me to send one of those international examples?</p>
+    </article>
+
+    <article class="card cat-proof">
+      <span class="card-number">72</span>
+      <div class="card-head">
+        <span class="tag">Proof</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Can you show me a site in the same industry as mine?"</p>
+      <p class="card-answer">Definitely — let me pull up the closest match to your business type so you're seeing something directly relevant, not just 'a website.' Give me one second to send the right link.</p>
+    </article>
+
+    <article class="card cat-proof">
+      <span class="card-number">73</span>
+      <div class="card-head">
+        <span class="tag">Proof</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Are these AI chatbots and booking systems actually working, or just for show?"</p>
+      <p class="card-answer">Fully working — I can demo it live right now if you want. Type a question into the chatbot on one of my example sites and watch it respond in real time, or make a test booking and I'll show you it landing in the admin dashboard instantly. Want me to walk you through it on a call?</p>
+    </article>
+
+    <article class="card cat-upsell">
+      <span class="card-number">74</span>
+      <div class="card-head">
+        <span class="tag">Upsell</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Can you set up Google My Business for us too?"</p>
+      <p class="card-answer">Yes — and honestly, this is one of the highest-impact things alongside the website itself, since it's often the first thing people see in local search. I can set it up or optimize your existing listing as an add-on. Want me to check your current listing and tell you what's missing?</p>
+    </article>
+
+    <article class="card cat-upsell">
+      <span class="card-number">75</span>
+      <div class="card-head">
+        <span class="tag">Upsell</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Do you offer ongoing maintenance after launch?"</p>
+      <p class="card-answer">Yes — I offer a monthly retainer that covers hosting, small content updates, and priority support, so you're never stuck if something needs changing. It's a small monthly fee compared to paying per-edit every time. Want me to include that in your quote?</p>
+    </article>
+
+    <article class="card cat-upsell">
+      <span class="card-number">76</span>
+      <div class="card-head">
+        <span class="tag">Upsell</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Can you write the content/copy for our site too, or do we need to provide it?"</p>
+      <p class="card-answer">I can write it for you — I know what converts for businesses like yours, and I'll match the tone to your brand. If you'd rather provide your own wording, that works too; I'll just polish it for clarity and flow. Want me to draft the homepage copy as part of the mockup so you can see the style?</p>
+    </article>
+
+    <article class="card cat-upsell">
+      <span class="card-number">77</span>
+      <div class="card-head">
+        <span class="tag">Upsell</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Can you add a blog section for SEO?"</p>
+      <p class="card-answer">Yes — a blog section can be added to help with long-term SEO, especially for local search terms. It's most valuable if you're willing to post even occasionally, since fresh content is what search engines reward. Want me to include a simple blog template you can update yourself?</p>
+    </article>
+
+    <article class="card cat-upsell">
+      <span class="card-number">78</span>
+      <div class="card-head">
+        <span class="tag">Upsell</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Do you do logo design too?"</p>
+      <p class="card-answer">I do basic logo refinement and can create a simple, clean logo if you don't have one — it's an add-on separate from the website packages. If you already have a logo, I'll make sure it looks sharp across the whole site. Want me to take a look at what you currently have and suggest improvements?</p>
+    </article>
+
+    <article class="card cat-upsell">
+      <span class="card-number">79</span>
+      <div class="card-head">
+        <span class="tag">Upsell</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Can you set up email marketing or newsletters?"</p>
+      <p class="card-answer">Yes — I can integrate an email signup form into your site and connect it to a simple email tool so you can send promotions or updates to your customer list. It's a great way to bring repeat customers back without ad spend. Want me to add a signup form to the mockup?</p>
+    </article>
+
+    <article class="card cat-upsell">
+      <span class="card-number">80</span>
+      <div class="card-head">
+        <span class="tag">Upsell</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Can you build us a mobile app too?"</p>
+      <p class="card-answer">A full mobile app is a bigger project with its own scope and pricing — but for most local businesses, a mobile-optimized website with an 'Add to Home Screen' feature gives 90% of the app experience at a fraction of the cost and time. Want me to show you what that looks like before considering a full app build?</p>
+    </article>
+
+    <article class="card cat-upsell">
+      <span class="card-number">81</span>
+      <div class="card-head">
+        <span class="tag">Upsell</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Do you offer multi-language versions of the site?"</p>
+      <p class="card-answer">Yes — I can build the site with a language switcher so customers can view it in multiple languages, which is especially useful for international or tourist-facing businesses. Want me to include that for your target languages?</p>
+    </article>
+
+    <article class="card cat-upsell">
+      <span class="card-number">82</span>
+      <div class="card-head">
+        <span class="tag">Upsell</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Can you add a loyalty/rewards section?"</p>
+      <p class="card-answer">Yes — I can build a simple points or rewards display tied to your booking system, so repeat customers see their progress and have a reason to come back. It's a great retention tool once your booking system is in place. Want me to sketch out how that would look for your business?</p>
+    </article>
+
+    <article class="card cat-trust">
+      <span class="card-number">83</span>
+      <div class="card-head">
+        <span class="tag">Trust</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"How do I know you won't just disappear with my deposit?"</p>
+      <p class="card-answer">Completely fair concern — that's exactly why I don't ask for any payment until you've seen the free mockup and you're happy with it. Even after that, I structure payments around milestones (mockup approved, site live) so you're never paying for something you haven't seen. Want me to outline the exact payment milestones?</p>
+    </article>
+
+    <article class="card cat-trust">
+      <span class="card-number">84</span>
+      <div class="card-head">
+        <span class="tag">Trust</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"What if you stop responding after I pay?"</p>
+      <p class="card-answer">I get why that's a real worry in this space — a lot of freelancers vanish. I keep all communication on WhatsApp with timestamps, send progress previews regularly, and the retainer option specifically exists so you have ongoing support, not a one-time disappearing act. Want me to share how I've handled support for existing clients so you can see the pattern?</p>
+    </article>
+
+    <article class="card cat-trust">
+      <span class="card-number">85</span>
+      <div class="card-head">
+        <span class="tag">Trust</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Are you a registered business or just doing this casually?"</p>
+      <p class="card-answer">I operate under Tako Designs, building premium sites for local and international clients. Whether someone is a registered company or an individual freelancer matters less than their track record and responsiveness — and I'm happy to let my existing live sites and client history speak for that. Want me to send a few so you can judge for yourself?</p>
+    </article>
+
+    <article class="card cat-trust">
+      <span class="card-number">86</span>
+      <div class="card-head">
+        <span class="tag">Trust</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Who owns the website once it's built — you or me?"</p>
+      <p class="card-answer">You do, completely. Once it's live and paid for, the site and domain belong to you — I'm not holding it hostage or charging recurring fees to 'keep it live' unless you choose the optional maintenance retainer for convenience. Want me to clarify exactly what you own vs. what's optional?</p>
+    </article>
+
+    <article class="card cat-trust">
+      <span class="card-number">87</span>
+      <div class="card-head">
+        <span class="tag">Trust</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Can you sign an agreement / contract before we start?"</p>
+      <p class="card-answer">Yes — for larger projects I'm happy to put a simple written agreement together covering scope, timeline, and payment terms, so there's clarity for both sides. It protects you as much as it protects me. Want me to draft one based on the package you're considering?</p>
+    </article>
+
+    <article class="card cat-trust">
+      <span class="card-number">88</span>
+      <div class="card-head">
+        <span class="tag">Trust</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Is my business information safe with you?"</p>
+      <p class="card-answer">Yes — I only use the information you give me to build your site, and I don't share or reuse your business details, photos, or content elsewhere without permission. Once the project's done, your data stays yours. Want me to confirm in writing as part of our agreement?</p>
+    </article>
+
+    <article class="card cat-trust">
+      <span class="card-number">89</span>
+      <div class="card-head">
+        <span class="tag">Trust</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Why should a 16-year-old be trusted with our business website?"</p>
+      <p class="card-answer">Fair question — and I'd rather you judge based on the work than my age. I've built 10+ live, working sites for real businesses across multiple countries, with booking systems and AI features that many agencies charge far more for. Age tells you how long I've been doing this; it doesn't tell you the quality. Want me to send examples and let the work speak for itself?</p>
+    </article>
+
+    <article class="card cat-trust">
+      <span class="card-number">90</span>
+      <div class="card-head">
+        <span class="tag">Trust</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"What happens if you're unavailable — do you have a backup or team?"</p>
+      <p class="card-answer">For now it's just me, which means direct communication with no middleman — your message reaches the person actually doing the work. For ongoing retainer clients, I keep buffer time built in specifically so support requests don't pile up. Want me to walk through expected response times so there's no ambiguity?</p>
+    </article>
+
+    <article class="card cat-trust">
+      <span class="card-number">91</span>
+      <div class="card-head">
+        <span class="tag">Trust</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"I've been burned by freelancers before — how is this different?"</p>
+      <p class="card-answer">I hear that a lot, and it's exactly why I lead with a free, no-payment mockup — you get to see real work before any money changes hands, which most freelancers who've burned people don't offer. If at any point it doesn't feel right, you walk away having lost nothing. Want me to start that mockup so you can judge for yourself, risk-free?</p>
+    </article>
+
+    <article class="card cat-technical">
+      <span class="card-number">92</span>
+      <div class="card-head">
+        <span class="tag">Technical</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Will the website load fast?"</p>
+      <p class="card-answer">Yes — every site I build is optimized for speed, since slow sites lose visitors within seconds. I keep file sizes lean, images optimized, and avoid bloated frameworks that slow things down. Want me to show you a speed test result from one of my live sites?</p>
+    </article>
+
+    <article class="card cat-technical">
+      <span class="card-number">93</span>
+      <div class="card-head">
+        <span class="tag">Technical</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Is it secure / can it get hacked?"</p>
+      <p class="card-answer">I build with standard security practices — secure hosting, no exposed admin panels without protection, and clean code that avoids common vulnerabilities. For sites with booking/admin systems, I add extra protections like rate limiting and access controls. Want me to explain the specific security measures for your package?</p>
+    </article>
+
+    <article class="card cat-technical">
+      <span class="card-number">94</span>
+      <div class="card-head">
+        <span class="tag">Technical</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Will it show up on Google search?"</p>
+      <p class="card-answer">Yes — every site includes basic SEO setup (titles, descriptions, structured data) so search engines can find and understand your business. The premium package goes further with deeper SEO and AI-search optimization, since people now search through ChatGPT and Google AI, not just traditional search. Want me to explain the difference in results you'd expect?</p>
+    </article>
+
+    <article class="card cat-technical">
+      <span class="card-number">95</span>
+      <div class="card-head">
+        <span class="tag">Technical</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Can the website integrate with our existing booking software?"</p>
+      <p class="card-answer">In most cases yes — many booking platforms offer embeddable widgets or links that I can integrate cleanly into the site's design. If you let me know which platform you're using, I can confirm exactly how it'll connect. Want to tell me what you're currently using?</p>
+    </article>
+
+    <article class="card cat-technical">
+      <span class="card-number">96</span>
+      <div class="card-head">
+        <span class="tag">Technical</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"What happens if our internet/hosting goes down — does the site go down too?"</p>
+      <p class="card-answer">The website is hosted independently on reliable cloud infrastructure, separate from your salon's internet connection — so even if your WiFi goes down, the site stays live for customers browsing from anywhere. Want me to explain where it's hosted and what uptime to expect?</p>
+    </article>
+
+    <article class="card cat-technical">
+      <span class="card-number">97</span>
+      <div class="card-head">
+        <span class="tag">Technical</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Can you add a live chat with a real person, not just AI?"</p>
+      <p class="card-answer">Yes — alongside the AI chatbot (which handles common questions instantly, 24/7), I can add a 'Chat on WhatsApp' button so customers can reach a real person when needed. Best of both: instant answers from AI, real conversation when it matters. Want me to show how both work together on a live example?</p>
+    </article>
+
+    <article class="card cat-technical">
+      <span class="card-number">98</span>
+      <div class="card-head">
+        <span class="tag">Technical</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Does the site work if someone has a slow internet connection?"</p>
+      <p class="card-answer">Yes — I specifically optimize image sizes and code so the site loads reasonably even on slower 3G/4G connections, which matters a lot for local customers browsing on mobile data. Want me to test-load one of my sites on a throttled connection so you can see for yourself?</p>
+    </article>
+
+    <article class="card cat-technical">
+      <span class="card-number">99</span>
+      <div class="card-head">
+        <span class="tag">Technical</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"Can we get analytics — like how many people visit the site?"</p>
+      <p class="card-answer">Yes — I can integrate a simple analytics tool that shows you visitor counts, where they're coming from, and which pages they spend time on. It's free to use and gives you real data on whether the site is working. Want me to include that setup?</p>
+    </article>
+
+    <article class="card cat-technical">
+      <span class="card-number">100</span>
+      <div class="card-head">
+        <span class="tag">Technical</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <p class="card-question">"What if we want to switch hosting or move the site later?"</p>
+      <p class="card-answer">Since the site is yours, you're never locked in — the code can be exported and moved to different hosting if you ever want to. I'll make sure you understand exactly how everything's set up so a future move (if ever needed) is straightforward. Want me to explain the technical setup in plain terms?</p>
+    </article>
+
+  </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         GLOBAL SUPPLIER NEGOTIATION MODULE
+         ═══════════════════════════════════════════════════════ -->
+
+    <div class="section-header">
+      <h2>Global Supplier Negotiation Scripts</h2>
+      <p>Position like a buyer with leverage — not a startup begging for a quote</p>
+    </div>
+
+    <!-- ─── CHINA 🇨🇳 ─── -->
+
+    <article class="card cat-supplier-cn">
+      <span class="card-number">101</span>
+      <span class="country-flag">🇨🇳</span>
+      <div class="card-head"><span class="tag">China</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">How do I introduce myself so a Chinese factory takes me seriously from day one?</p>
+      <p class="card-answer">Never open with your order size or inexperience. Open with future volume and intent. Say: "We are evaluating suppliers for a long-term supply chain partnership. We're placing a sample/trial batch now, but if quality and lead times are consistent, our reorder volumes will be significantly higher. We need a supplier who can scale with us." In Chinese factories, the buyer who sounds like tomorrow's largest client gets today's best price. 我们正在为长期合作评估供应商，现在下小批量订单，但如果质量稳定，后续订单量会大幅增加。</p>
+    </article>
+
+    <article class="card cat-supplier-cn">
+      <span class="card-number">102</span>
+      <span class="country-flag">🇨🇳</span>
+      <div class="card-head"><span class="tag">China</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">The factory quoted me a high price. How do I push back without them dismissing me?</p>
+      <p class="card-answer">Don't argue price — argue competition. Say: "We received quotes from three factories this week. Your product interests us most, but your price is not competitive with the others. We prefer to consolidate with one long-term partner. What's the best price you can offer if we commit to monthly reorders?" You're not begging for a discount — you're offering exclusivity as a trade for margin. That's leverage. 我们收到了多家工厂的报价，您的产品最符合我们的需求，但价格暂时不具竞争力。如果我们每月持续下单，能否给出更好的价格？</p>
+    </article>
+
+    <article class="card cat-supplier-cn">
+      <span class="card-number">103</span>
+      <span class="country-flag">🇨🇳</span>
+      <div class="card-head"><span class="tag">China</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">How do I negotiate MOQ down without looking like a small buyer?</p>
+      <p class="card-answer">Reframe the trial as a vetting process, not a small order. Say: "Our standard process before scaling with a supplier is a controlled trial batch to validate quality, packaging, and shipping time. This is a required step before we move to full volume. What's the minimum you can accommodate for this qualification order?" You are running a process. They are being evaluated. Completely different psychology from "I can't afford more." 在与供应商大规模合作之前，我们通常会先进行小批量测试，以评估产品质量、包装和发货时效。这是我们的标准流程，请问贵司能接受的最低起订量是多少？</p>
+    </article>
+
+    <article class="card cat-supplier-cn">
+      <span class="card-number">104</span>
+      <span class="country-flag">🇨🇳</span>
+      <div class="card-head"><span class="tag">China</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">The factory keeps delaying. How do I create urgency without burning the relationship?</p>
+      <p class="card-answer">Chinese factories respect clear timelines tied to consequences, not emotional pressure. Say: "We have a product launch deadline of [DATE]. If we cannot confirm production and shipping by [DATE], we will need to move to our backup supplier for this order. We would prefer to work with you — can you confirm your capacity to meet this timeline?" Deadlines with business logic behind them get respect. Vague "please hurry" messages get ignored. 我们的产品发布时间是[日期]。如果无法在[日期]前确认生产和发货，我们将不得不转向备选供应商。希望优先与您合作，请问您能否确认在此时限内完成？</p>
+    </article>
+
+    <article class="card cat-supplier-cn">
+      <span class="card-number">105</span>
+      <span class="country-flag">🇨🇳</span>
+      <div class="card-head"><span class="tag">China</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">How do I ask for a sample without them charging inflated sample fees to test me?</p>
+      <p class="card-answer">Tie the sample directly to the expected production order. Say: "We're requesting samples as part of our supplier qualification process. Our planned order quantity is [X units]. If the sample meets our specifications, we will place the production order within [X] days. We're happy to cover standard shipping — can you confirm sample availability and lead time?" When they see a real PO is attached to the sample, the sample cost conversation changes entirely. 我们希望申请样品进行供应商评审，计划订单量为[X]件。如样品达到我们的标准，将在[X]天内下生产订单。请问样品备货时间及运费如何？</p>
+    </article>
+
+    <article class="card cat-supplier-cn">
+      <span class="card-number">106</span>
+      <span class="country-flag">🇨🇳</span>
+      <div class="card-head"><span class="tag">China</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">The quality dropped on my second order. How do I handle this without losing the supplier?</p>
+      <p class="card-answer">Document everything first. Then say: "We received the second shipment and found [specific issues] that were not present in our original sample or first order. We have photos and measurements. Quality consistency is a core requirement for us to maintain this partnership long-term. We need to understand what changed in production and what corrective actions you will implement before we release payment for the affected units." Calm, documented, commercial. No threats, no emotion — just consequences attached to facts. 我们收到第二批货物时发现[具体问题]，与原始样品及第一批不符，附有照片和数据。质量稳定性是我们长期合作的基础要求，请说明生产过程中的变化及纠正措施，我们将在收到反馈后处理付款事宜。</p>
+    </article>
+
+    <article class="card cat-supplier-cn">
+      <span class="card-number">107</span>
+      <span class="country-flag">🇨🇳</span>
+      <div class="card-head"><span class="tag">China</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">How do I get better payment terms — they want 30% deposit, 70% before shipping?</p>
+      <p class="card-answer">Payment terms are negotiated after trust is built, not upfront. But you can accelerate that. Say: "For our first order, we can work with your standard terms. As we build a track record together and our order volumes grow, we'll want to discuss net-30 terms or adjusted deposit structures. Is this something your company offers to established long-term clients?" Plant the seed now — collect on it after the second or third order. Factories give favorable terms to buyers they can't afford to lose. 我们可以接受首单的标准付款条件。随着合作深入、订单量增加，希望探讨账期或降低定金比例的可能性。贵司是否对长期客户提供此类付款安排？</p>
+    </article>
+
+    <article class="card cat-supplier-cn">
+      <span class="card-number">108</span>
+      <span class="country-flag">🇨🇳</span>
+      <div class="card-head"><span class="tag">China</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">Should I tell my Chinese supplier I'm reselling their product in the West?</p>
+      <p class="card-answer">Yes — but frame it as market development, not arbitrage. Say: "We are building a distribution network for your product category across [US/EU/AU] markets. We have existing sales channels and marketing infrastructure in place. We're looking for an exclusive or preferred supplier partner to grow this market with us." This makes them protective of you — they don't want a competitor to establish your market. You become a strategic asset, not just another buyer. 我们正在[美国/欧洲/澳大利亚]市场建立您产品类别的分销网络，拥有现有销售渠道和营销资源，希望寻找独家或优先合作的供应商共同开拓市场。</p>
+    </article>
+
+    <!-- ─── INDIA 🇮🇳 ─── -->
+
+    <article class="card cat-supplier-in">
+      <span class="card-number">109</span>
+      <span class="country-flag">🇮🇳</span>
+      <div class="card-head"><span class="tag">India</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">Indian suppliers keep negotiating even after I give them a price. How do I close it?</p>
+      <p class="card-answer">Indian negotiation culture expects multiple rounds — it's not obstruction, it's the process. Counter it by anchoring with a deadline and a final number. Say: "I've reviewed all three quotes. My final budget for this order is ₹[X] all-in, including shipping to port. If you can match this, I'll issue the PO today. I need to confirm my supplier by [DATE] to meet our production timeline." The PO-today offer changes behavior instantly. It converts a negotiation into a decision.</p>
+    </article>
+
+    <article class="card cat-supplier-in">
+      <span class="card-number">110</span>
+      <span class="country-flag">🇮🇳</span>
+      <div class="card-head"><span class="tag">India</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">My Indian manufacturer keeps promising timelines they can't keep. How do I fix this?</p>
+      <p class="card-answer">Indian suppliers often confirm timelines to please the buyer, then renegotiate later. Break this pattern by building penalties into the contract language. Say: "Before we proceed, I need us to agree on a production schedule with milestone dates — fabric sourcing by [DATE], production start by [DATE], QC completion by [DATE], dispatch by [DATE]. We'll tie 10% of final payment to on-time dispatch. This protects both of us and keeps the project on track." Money attached to milestones is the only language that consistently works.</p>
+    </article>
+
+    <article class="card cat-supplier-in">
+      <span class="card-number">111</span>
+      <span class="country-flag">🇮🇳</span>
+      <div class="card-head"><span class="tag">India</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">How do I source from Indian suppliers (textiles, handicrafts, spices) without getting ripped off as a foreign buyer?</p>
+      <p class="card-answer">Foreign buyer markup is real and immediate. Counter it by establishing you know the market. Say: "I've been sourcing from India for [X] years / I have existing relationships with suppliers in [Surat/Jaipur/etc.]. I'm looking to expand my vendor base — not replace it. I'm comparing your pricing against my current supplier rates, so I'd appreciate your most competitive quote." Even if it's your first time, frame it as expansion, not discovery. You're evaluating them against known benchmarks, not asking to be educated.</p>
+    </article>
+
+    <article class="card cat-supplier-in">
+      <span class="card-number">112</span>
+      <span class="country-flag">🇮🇳</span>
+      <div class="card-head"><span class="tag">India</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">How do I use the relationship-first culture of Indian business to my advantage?</p>
+      <p class="card-answer">Indian business runs on trust and long-term relationships — not transactions. Exploit this honestly. Invest time early: video call instead of email, ask about their capacity and challenges, reference their business specifically. Then say: "I prefer to build a small number of deep supplier relationships rather than spread orders across many vendors. If you're the right fit, you'll be our primary source for this category." Make them feel like a partner, not a vendor. The loyalty you get back is worth more than any single price concession.</p>
+    </article>
+
+    <!-- ─── VIETNAM 🇻🇳 ─── -->
+
+    <article class="card cat-supplier-vn">
+      <span class="card-number">113</span>
+      <span class="country-flag">🇻🇳</span>
+      <div class="card-head"><span class="tag">Vietnam</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">Why should I even consider Vietnam over China, and how do I use that positioning in negotiations?</p>
+      <p class="card-answer">Vietnam is the premium alternative narrative — lower tariff exposure (especially US-China trade war), rising quality in garments, electronics, and furniture, and growing factory capacity. Use this as leverage with Chinese suppliers: "We're actively evaluating Vietnam as part of our supply chain diversification strategy due to tariff risk. We'd like to stay with your factory, but need your pricing to reflect this competitive reality." You're not threatening — you're telling the truth about the market. That's the most credible leverage there is.</p>
+    </article>
+
+    <article class="card cat-supplier-vn">
+      <span class="card-number">114</span>
+      <span class="country-flag">🇻🇳</span>
+      <div class="card-head"><span class="tag">Vietnam</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">Vietnamese factories are harder to communicate with — how do I manage this?</p>
+      <p class="card-answer">Overcommunicate in writing, always. Vietnamese factories often have lower English proficiency than Chinese counterparts, and misunderstood specs are a top failure point. Say: "Before we confirm the order, I'll send a full specification sheet with photos, measurements, material requirements, and packaging details. Please review and confirm each point in writing. Any item not confirmed will be treated as not agreed." Over-spec in writing. Under-assume in communication. This protects you more than any contract clause.</p>
+    </article>
+
+    <article class="card cat-supplier-vn">
+      <span class="card-number">115</span>
+      <span class="country-flag">🇻🇳</span>
+      <div class="card-head"><span class="tag">Vietnam</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">How do I negotiate price with a Vietnamese factory as a new buyer?</p>
+      <p class="card-answer">Vietnamese suppliers respond well to relationship signals combined with volume commitment. Say: "We are a growing brand currently sourcing from [country]. We're expanding our supply chain into Vietnam because of the product quality and trade advantages. Our current order is a qualification batch — if this goes well, we will place [X] orders per year. What pricing can you offer for this initial order with that volume trajectory in mind?" Show the roadmap. They'll price for where you're going, not where you are.</p>
+    </article>
+
+    <article class="card cat-supplier-vn">
+      <span class="card-number">116</span>
+      <span class="country-flag">🇻🇳</span>
+      <div class="card-head"><span class="tag">Vietnam</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">How do I protect myself from quality drops with a Vietnamese supplier mid-order?</p>
+      <p class="card-answer">Hire a third-party QC inspector in Vietnam before the shipment leaves — services like QIMA, Bureau Veritas, or AsiaInspection cost $200–$350 per inspection and catch problems before they become your problem. Tell the factory upfront: "We use independent quality inspection before every shipment. Our inspector will conduct a pre-shipment check at your facility. This is our standard process with all suppliers." This alone eliminates 80% of quality surprises — factories perform differently when they know an inspector is coming.</p>
+    </article>
+
+    <!-- ─── TURKEY 🇹🇷 ─── -->
+
+    <article class="card cat-supplier-tr">
+      <span class="card-number">117</span>
+      <span class="country-flag">🇹🇷</span>
+      <div class="card-head"><span class="tag">Turkey</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">How do I negotiate with Turkish textile or leather suppliers who have strong pride in their product?</p>
+      <p class="card-answer">Turkish manufacturers — especially in textiles, leather goods, and furniture — are deeply proud of their craftsmanship. Never lead with price. Lead with product recognition. Say: "We've been specifically looking for Turkish-manufactured [product] because of the quality reputation. We've reviewed several samples and yours stands out in [specific quality]. We're ready to move forward — can we discuss pricing for [X] units as an opening order?" Flattery based on specifics is respect. Respect opens price flexibility faster than pressure does in Turkey.</p>
+    </article>
+
+    <article class="card cat-supplier-tr">
+      <span class="card-number">118</span>
+      <span class="country-flag">🇹🇷</span>
+      <div class="card-head"><span class="tag">Turkey</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">Turkish suppliers want to negotiate over WhatsApp calls — is this a red flag?</p>
+      <p class="card-answer">No — WhatsApp is standard Turkish business culture. Lean into it. Build rapport before you talk price. A Turkish supplier who trusts you will bend on price, lead time, and terms. One who doesn't trust you will hold firm on everything. After building rapport on call, always follow up in writing: "As discussed, confirming: [price], [quantity], [delivery date], [payment terms]." Relationship on the call, contract in writing. That's the Turkish formula.</p>
+    </article>
+
+    <article class="card cat-supplier-tr">
+      <span class="card-number">119</span>
+      <span class="country-flag">🇹🇷</span>
+      <div class="card-head"><span class="tag">Turkey</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">How do I get better pricing from Turkish suppliers for EU-market goods?</p>
+      <p class="card-answer">Turkey has a customs union with the EU — no tariffs on most manufactured goods going into Europe. Use this as your framing. Say: "We're building a supply chain specifically for European distribution and Turkey is strategically positioned for this — no tariff friction, faster shipping than Asia. We want to grow this relationship significantly. What pricing structure can you offer for a buyer who's specifically building their EU supply chain through Turkey?" You're not just buying product — you're offering them a European growth story. That's positioning.</p>
+    </article>
+
+    <article class="card cat-supplier-tr">
+      <span class="card-number">120</span>
+      <span class="country-flag">🇹🇷</span>
+      <div class="card-head"><span class="tag">Turkey</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">The Turkish lira fluctuates a lot — how do I handle currency risk in supplier contracts?</p>
+      <p class="card-answer">Always quote and contract in USD or EUR — not TRY. Turkish suppliers who export regularly will expect this. Say: "For international orders, we invoice and pay in USD/EUR to keep pricing stable for both sides. This protects you from currency exposure during production and protects us from rate fluctuations at payment time. Can we agree on USD pricing for this order?" This is standard practice and any serious exporter will accept it. Anyone who insists on TRY for an international order is either inexperienced or trying to shift currency risk onto you.</p>
+    </article>
+
+    <!-- ─── BANGLADESH 🇧🇩 ─── -->
+
+    <article class="card cat-supplier-bd">
+      <span class="card-number">121</span>
+      <span class="country-flag">🇧🇩</span>
+      <div class="card-head"><span class="tag">Bangladesh</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">How do I approach Bangladesh for garment sourcing without being seen as a race-to-bottom price buyer?</p>
+      <p class="card-answer">Bangladesh factories have been burned by brands that demand the lowest price and then leave. Position yourself as a quality-first, long-term buyer. Say: "We're not looking for the cheapest option — we're looking for a compliant, quality-consistent factory we can scale orders with over time. Our customers are in [UK/EU/US] and we have strict quality and ethical sourcing standards. Can you walk me through your certifications, QC process, and capacity?" Showing you care about compliance and quality puts you in the top tier of buyers they actually want to work with — and those buyers get better pricing and priority production slots.</p>
+    </article>
+
+    <article class="card cat-supplier-bd">
+      <span class="card-number">122</span>
+      <span class="country-flag">🇧🇩</span>
+      <div class="card-head"><span class="tag">Bangladesh</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">Bangladeshi factories keep pushing me to their agent or middleman. How do I go direct?</p>
+      <p class="card-answer">Agents add 10–25% margin and create communication layers that cause problems. Go direct by attending trade fairs (Dhaka International Textile and Garment Machinery Exhibition, or source through BGMEA member listings) or using platforms like Sewport or Kompass. When you reach the factory: "We prefer to work directly with the manufacturing facility rather than through agents. This allows us to maintain direct communication on quality, timelines, and specifications. Are you the factory owner / production manager I should be speaking with?" Direct relationships also mean disputes get resolved faster.</p>
+    </article>
+
+    <article class="card cat-supplier-bd">
+      <span class="card-number">123</span>
+      <span class="country-flag">🇧🇩</span>
+      <div class="card-head"><span class="tag">Bangladesh</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">How do I ensure ethical compliance when sourcing from Bangladesh without paying a premium I can't afford?</p>
+      <p class="card-answer">Compliance and cost aren't always in conflict — BSCI, WRAP, or GOTS-certified factories in Bangladesh often run more efficiently and produce fewer defects, which means lower rework costs for you. Ask: "Do you hold any third-party compliance certifications? We require [BSCI/SA8000/WRAP] certification for our buyers in [market]. If not currently certified, are you in the process? We're willing to work with factories who are on the compliance journey — not just ones who already have the certificate." This signals seriousness and opens doors to factories that better brands use.</p>
+    </article>
+
+    <article class="card cat-supplier-bd">
+      <span class="card-number">124</span>
+      <span class="country-flag">🇧🇩</span>
+      <div class="card-head"><span class="tag">Bangladesh</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">How do I use Bangladesh's GSP (trade preferences) as a negotiating tool?</p>
+      <p class="card-answer">Bangladesh has Generalized System of Preferences (GSP) status with EU and other markets — meaning lower or zero import duties for buyers importing into those regions. Use this. Say: "Part of the reason we're focused on Bangladesh is the GSP advantage into [EU/UK market], which reduces our landed cost significantly compared to other origins. This makes us confident about growing this supply chain. We want to reflect that shared advantage in our pricing discussions." You're explaining why they're valuable — and using that to justify why pricing should be competitive. That's leverage without aggression.</p>
+    </article>
+
+    <!-- ─── MEXICO 🇲🇽 ─── -->
+
+    <article class="card cat-supplier-mx">
+      <span class="card-number">125</span>
+      <span class="country-flag">🇲🇽</span>
+      <div class="card-head"><span class="tag">Mexico</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">Why source from Mexico and how do I open that conversation with a supplier?</p>
+      <p class="card-answer">Mexico's USMCA advantage is your strongest pitch — near-zero tariffs for US-bound goods, 2–5 day shipping versus 30+ days from Asia, and "Made in North America" brand positioning that sells at premium retail. Say: "We're actively nearshoring part of our supply chain to Mexico for three reasons: USMCA tariff benefits, faster replenishment cycles, and US consumer demand for regional sourcing. We're looking for a factory partner who understands this market positioning. Are you currently exporting to the US under USMCA?" Suppliers who get this are already thinking like strategic partners, not just manufacturers.</p>
+    </article>
+
+    <article class="card cat-supplier-mx">
+      <span class="card-number">126</span>
+      <span class="country-flag">🇲🇽</span>
+      <div class="card-head"><span class="tag">Mexico</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">Mexican suppliers seem slow to respond or quote. How do I create urgency?</p>
+      <p class="card-answer">Relationship first, always — Mexican business culture is high-context and trust-based. A cold follow-up email does nothing. A WhatsApp voice note or call does a lot. Say on call: "Quería seguir con el tema de la cotización — tenemos un plazo de producción esta semana y quiero asegurarme de trabajar con su empresa si los números funcionan." (I wanted to follow up on the quote — we have a production deadline this week and I want to make sure we work with your company if the numbers work.) Warmth plus deadline. It's the unlock in Mexican business culture.</p>
+    </article>
+
+    <article class="card cat-supplier-mx">
+      <span class="card-number">127</span>
+      <span class="country-flag">🇲🇽</span>
+      <div class="card-head"><span class="tag">Mexico</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">How do I negotiate price with a Mexican manufacturer without insulting them?</p>
+      <p class="card-answer">Directness about price is fine in Mexico — but it must come after rapport, not before. Don't lead with "your price is too high." Lead with interest, then the constraint. Say: "Nos interesa mucho trabajar con ustedes. Mi presupuesto aprobado para esta orden es de $[X]. ¿Hay alguna forma de acercarnos a ese número sin comprometer la calidad?" (We're very interested in working with you. My approved budget for this order is $[X]. Is there any way to get closer to that number without compromising quality?) You're not attacking their price — you're presenting a budget reality and inviting them to solve it with you. Collaborative framing.</p>
+    </article>
+
+    <article class="card cat-supplier-mx">
+      <span class="card-number">128</span>
+      <span class="country-flag">🇲🇽</span>
+      <div class="card-head"><span class="tag">Mexico</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">What's the single most powerful thing I can say to any supplier, in any country, to instantly command more respect?</p>
+      <p class="card-answer">This one sentence works everywhere: "We are currently working with [X] suppliers and consolidating to [fewer]. We want our primary supplier in this category to be someone we can grow with — higher volumes, exclusivity in our market, and direct communication. We're deciding in the next [X] days." You're signaling: I have choices, I'm deciding now, and the winner gets something exclusive. Every factory in every country responds to the fear of losing a long-term buyer to a competitor. You're not a customer. You're a prize. Act like one.</p>
+    </article>
+
+    <!-- Universal Power Scripts -->
+    <div class="section-header">
+      <h2>Universal Supplier Power Moves</h2>
+      <p>Scripts that work regardless of country — pure leverage psychology</p>
+    </div>
+
+    <article class="card cat-universal">
+      <span class="card-number">129</span>
+      <span class="country-flag">🌐</span>
+      <div class="card-head"><span class="tag">Universal</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">What are the 5 phrases that instantly kill your negotiating position with any supplier?</p>
+      <p class="card-answer">1. "I'm just starting out" — signals no track record, no volume, high risk. 2. "This is a small order for now" — tells them you're testing, not committed. 3. "I don't have a big budget" — removes their incentive to compete for you. 4. "Can you give me a discount?" — positions you as a price-chaser, not a value buyer. 5. "I really love your product" — removes leverage before negotiation begins. Replace all five with volume signals, future commitments, and multi-supplier competition framing. You are always evaluating them. They are always trying to earn you.</p>
+    </article>
+
+    <article class="card cat-universal">
+      <span class="card-number">130</span>
+      <span class="country-flag">🌐</span>
+      <div class="card-head"><span class="tag">Universal</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">What's the masterclass one-sentence email opener that works on any global supplier?</p>
+      <p class="card-answer">Use this: "We are building a long-term supply chain for [product category] and are currently evaluating 3–4 manufacturers — we would like to include your factory in this process." This sentence does five things simultaneously: (1) signals you're serious and organized, (2) implies volume and consistency, (3) creates competition between suppliers, (4) positions you as the evaluator — not the supplicant, (5) gives them a reason to respond fast and competitively. It costs you nothing to say. It changes everything about how they respond.</p>
+    </article>
+
+    <article class="card cat-supplier-us">
+      <span class="card-number">131</span>
+      <span class="country-flag">🇺🇸</span>
+      <div class="card-head"><span class="tag">USA</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">How do I get a quote from a US manufacturer when they normally only deal with big-volume clients?</p>
+      <p class="card-answer">US factories are slammed and filter hard for serious buyers — speed and specificity win, not flattery. Say: "We have finalized specs and are ready to place a production order. Attached is our spec sheet and target quantity for the first run, with a recurring order projected at [X]/quarter if lead times and quality meet spec. What's your MOQ and lead time for a buyer ready to move this month?" Specs attached + "ready to move" + recurring volume signal moves you out of the tire-kicker pile instantly. US suppliers respond to readiness, not interest.</p>
+    </article>
+
+    <article class="card cat-supplier-us">
+      <span class="card-number">132</span>
+      <span class="country-flag">🇺🇸</span>
+      <div class="card-head"><span class="tag">USA</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">A US supplier quoted a price that's way higher than overseas — how do I negotiate it down without losing the "Made in USA" advantage?</p>
+      <p class="card-answer">Don't compare their price to China out loud — that just tells them you'll leave for cheaper anyway. Instead, anchor on volume and reliability: "We understand domestic production carries a premium, and that's part of why we're sourcing here — shorter lead times and 'Made in USA' positioning matter to our customers. At [X] units recurring, is there room to bring the per-unit cost closer to [target price] to make this a long-term fit on our end?" You're not attacking their price — you're testing if volume unlocks a tier they haven't quoted yet. Most US shops have an unlisted volume tier.</p>
+    </article>
+
+    <article class="card cat-supplier-us">
+      <span class="card-number">133</span>
+      <span class="country-flag">🇺🇸</span>
+      <div class="card-head"><span class="tag">USA</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">How do I get net-30 or net-60 payment terms from a new US supplier instead of paying upfront?</p>
+      <p class="card-answer">New accounts almost always start prepaid or COD — terms are earned, not requested cold. Don't ask for terms in the first message; ask for the path to terms: "For this first order we're comfortable with [50% deposit / prepaid] to get started. As we move into recurring orders, what's your process for moving accounts to net-30 terms?" This signals you expect a relationship, not a one-off, and gets the supplier to define their own terms ladder — which you then walk up after 2-3 clean orders. Asking for terms day one signals cash-flow weakness; asking about the path signals you're playing long.</p>
+    </article>
+
+    <article class="card cat-supplier-us">
+      <span class="card-number">134</span>
+      <span class="country-flag">🇺🇸</span>
+      <div class="card-head"><span class="tag">USA</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">How do I use US tariffs and reshoring trends as leverage when talking to American manufacturers?</p>
+      <p class="card-answer">US manufacturers are fielding more inbound demand from brands fleeing tariff exposure on Asian imports — position yourself as part of that wave, not a charity case. Say: "We're shifting a portion of our supply chain back to domestic production due to tariff exposure and lead-time risk overseas. We're evaluating a small number of US partners for a long-term relationship and want to understand your capacity for scaling with us over the next 12 months." This frames you as a strategic reshoring partner riding a trend they already see — and trend-aligned buyers get priority scheduling and better pricing tiers.</p>
+    </article>
+
+    <article class="card cat-supplier-eu">
+      <span class="card-number">135</span>
+      <span class="country-flag">🇪🇺</span>
+      <div class="card-head"><span class="tag">Europe</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">How do I approach German or Northern European manufacturers known for being strict and process-driven?</p>
+      <p class="card-answer">German and Dutch suppliers respect precision and punish vagueness — sloppy first contact gets you ranked low or ignored. Say: "We have completed our technical specification and quality requirements (attached) and are evaluating manufacturing partners for a production run starting [date]. Could you confirm your current capacity, certifications (ISO/CE as applicable), and lead time for an order of this scope?" Specs, dates, and certification questions up front signal you operate to their standard. Vague "what can you do for me" emails get filtered into the slow-response pile permanently.</p>
+    </article>
+
+    <article class="card cat-supplier-eu">
+      <span class="card-number">136</span>
+      <span class="country-flag">🇪🇺</span>
+      <div class="card-head"><span class="tag">Europe</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">How do I negotiate price with Italian or Southern European suppliers without seeming disrespectful of their craftsmanship?</p>
+      <p class="card-answer">Italian, Portuguese, and Spanish manufacturers — especially in fashion, leather, and furniture — sell heritage and craft as much as product. Lead with that before touching price. Say: "We chose to look at Italian production specifically because of the craftsmanship reputation — it's a key part of our brand story for customers. For an opening order of [X] units, what pricing and minimums would make sense to start this relationship, with the expectation of growing volume as the line performs?" Respect for the craft narrative buys you negotiating room that a pure price-shopper never gets.</p>
+    </article>
+
+    <article class="card cat-supplier-eu">
+      <span class="card-number">137</span>
+      <span class="country-flag">🇪🇺</span>
+      <div class="card-head"><span class="tag">Europe</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">How do I use the EU's CE marking and compliance standards as a positioning tool with European suppliers?</p>
+      <p class="card-answer">Most serious EU manufacturers already build to CE, REACH, or RoHS standards — referencing them signals you're a compliant-market buyer, not a discount tourist. Say: "Our products are sold into [EU market / regulated category] and require full CE marking and REACH compliance documentation. We're looking for a manufacturing partner who can supply full compliance paperwork as standard — can you confirm this is part of your normal process?" This single question filters you into the "professional buyer" bucket immediately, which gets you the supplier's better account managers and tighter, more reliable quoting.</p>
+    </article>
+
+    <article class="card cat-supplier-eu">
+      <span class="card-number">138</span>
+      <span class="country-flag">🇪🇺</span>
+      <div class="card-head"><span class="tag">Europe</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">European suppliers are slow to reply and take long holidays — how do I keep deals moving without losing leverage?</p>
+      <p class="card-answer">Don't chase with "just following up" emails — they read as low-priority and get pushed further down. Instead, reattach a deadline tied to your business, not theirs: "We're finalizing our supplier shortlist for this product line by [date] and want to make sure your quote is part of that comparison. If timing is tight on your end due to [holiday period], let us know and we can adjust — otherwise we'll proceed with the information we have by [date]." This isn't pressure for pressure's sake — it gives them a real reason to prioritize you and an easy out that still keeps a deadline in place. Silence after this usually means you weren't a priority anyway — move on.</p>
+    </article>
+
+    <article class="card cat-supplier-us">
+      <span class="card-number">139</span>
+      <span class="country-flag">🇺🇸</span>
+      <div class="card-head"><span class="tag">USA</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">How do I get a US manufacturer to prioritize my small order over their bigger clients?</p>
+      <p class="card-answer">You won't win on size, so win on flexibility and margin. Say: "We understand we're a smaller order relative to your typical accounts. We're flexible on production scheduling — happy to slot into gaps in your run schedule — and our margin expectations reflect that we're a smaller, easier account to serve. If a slot opens up that fits this order, we'd love to be considered." Factories love filler work that doesn't disrupt their main schedule. You're offering to be the easy "yes" that fills a gap — not competing head-on with their anchor clients.</p>
+    </article>
+
+    <article class="card cat-supplier-us">
+      <span class="card-number">140</span>
+      <span class="country-flag">🇺🇸</span>
+      <div class="card-head"><span class="tag">USA</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">A US supplier ghosted after sending a quote. How do I revive the deal without looking desperate?</p>
+      <p class="card-answer">Don't send "just checking in" — that confirms low priority. Instead, change the frame: "Since we last spoke, our timeline shifted slightly — we're now finalizing our supplier decision by [new date]. Before we move forward, I wanted to confirm the quote you sent is still current, and whether there's any flexibility on [lead time / MOQ] given we're ready to commit quickly once we lock in a partner." New deadline + readiness to commit gives them a fresh reason to respond, and reframes the silence as your timeline evolving — not you waiting on them.</p>
+    </article>
+
+    <article class="card cat-supplier-eu">
+      <span class="card-number">141</span>
+      <span class="country-flag">🇪🇺</span>
+      <div class="card-head"><span class="tag">Europe</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">How do I negotiate MOQs with European suppliers who have high minimums for new accounts?</p>
+      <p class="card-answer">Don't ask them to lower the MOQ — ask them to help you hit it profitably. Say: "Your standard MOQ is higher than our opening order would typically be, but we're committed to building this relationship. Would it be possible to split the first MOQ across two SKUs / colorways so we can test market response across our range while still meeting your minimum?" This keeps their MOQ intact (no precedent-setting discount) while solving your real problem — testing multiple products without overcommitting capital to one. European suppliers say yes to this far more than to "can you do a smaller minimum."</p>
+    </article>
+
+    <article class="card cat-supplier-eu">
+      <span class="card-number">142</span>
+      <span class="country-flag">🇪🇺</span>
+      <div class="card-head"><span class="tag">Europe</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">How do I handle VAT and cross-border invoicing questions without sounding like I don't know what I'm doing?</p>
+      <p class="card-answer">Ask the question as a confirmation, not a discovery: "For cross-border B2B invoicing under the EU reverse-charge mechanism, we'll provide our VAT/EORI number so the invoice can be issued at 0% VAT. Can you confirm your standard process for this with non-EU/intra-EU buyers?" Even if you're unsure of the exact mechanics for your specific country pairing, framing it as "confirm your process" rather than "how does this work" keeps you positioned as the experienced buyer. Then verify the actual requirement with your accountant before the invoice is issued.</p>
+    </article>
+
+    <article class="card cat-universal">
+      <span class="card-number">143</span>
+      <span class="country-flag">🌐</span>
+      <div class="card-head"><span class="tag">Universal</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">How do I respond when a supplier says "this is our final price, take it or leave it"?</p>
+      <p class="card-answer">Never argue with "final price" directly — it triggers ego defense. Instead, change what's being priced: "Understood on pricing for this spec. If we adjusted [packaging / MOQ / payment terms / lead time] slightly, would that open any room, or is the current spec genuinely the floor regardless of those variables?" You're not asking them to break their word — you're asking if a different deal exists. Most "final prices" are final only for the exact configuration quoted. Change one variable and the floor often moves.</p>
+    </article>
+
+    <article class="card cat-universal">
+      <span class="card-number">144</span>
+      <span class="country-flag">🌐</span>
+      <div class="card-head"><span class="tag">Universal</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">How do I negotiate when I genuinely am a small buyer and can't fake volume credibly?</p>
+      <p class="card-answer">Don't fake volume you can't back — suppliers test claims with follow-up questions and you'll lose all credibility if caught. Instead, sell speed and low-friction: "We're a smaller buyer right now, but we make decisions fast, pay on time, and don't create operational headaches — no constant spec changes, no late payments, no excessive revisions. For suppliers willing to work with smaller volumes from buyers who are easy to work with, what would pricing look like?" Being "easy" is real leverage that doesn't require lying — many factories have bandwidth they'd rather fill with low-hassle small orders than chase one demanding big client.</p>
+    </article>
+
+    <article class="card cat-universal">
+      <span class="card-number">145</span>
+      <span class="country-flag">🌐</span>
+      <div class="card-head"><span class="tag">Universal</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">How do I use competing quotes without starting a price war that damages relationships?</p>
+      <p class="card-answer">Never say "Supplier X quoted me lower" — that's adversarial and invites a race to the bottom. Instead: "We've received a few quotes in a similar range for this spec, and we're now weighing pricing against other factors — communication, sample quality, and reliability — to make our final decision. Is there anything about your offer you'd want us to factor in before we decide?" This tells them they're in a competitive set without naming numbers or competitors, and invites them to compete on factors beyond price — where margin-friendly differentiation actually lives.</p>
+    </article>
+
+    <article class="card cat-universal">
+      <span class="card-number">146</span>
+      <span class="country-flag">🌐</span>
+      <div class="card-head"><span class="tag">Universal</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">How do I ask for a sample without signaling I'm not a serious buyer yet?</p>
+      <p class="card-answer">Frame the sample as the last step before commitment, not the first step of evaluation: "We've reviewed your specs and pricing and you're our preferred option pending sample approval. Once we confirm quality on our end, we're ready to move forward with the order discussed. What's your sample lead time and cost?" "Preferred option pending sample" tells them they've effectively won — which makes them prioritize getting you a good sample fast, rather than treating you as one of fifty buyers requesting free samples with no real intent.</p>
+    </article>
+
+    <article class="card cat-universal">
+      <span class="card-number">147</span>
+      <span class="country-flag">🌐</span>
+      <div class="card-head"><span class="tag">Universal</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">How do I push back on a supplier raising prices mid-relationship without souring things?</p>
+      <p class="card-answer">Don't accuse them of price-gouging — acknowledge the cost pressure exists, then anchor on the relationship's value to them: "We understand input costs have changed and a price adjustment may be necessary. Given our order history and the volume we're projecting for [next period], can we discuss a structure where the increase is partially offset by a slightly larger order size or a longer-term price lock? We'd like to find something that works for both sides without disrupting the relationship." You're not refusing the increase — you're trading a concession (volume/lock-in) for a smaller number, which costs them less than losing a recurring account.</p>
+    </article>
+
+    <article class="card cat-universal">
+      <span class="card-number">148</span>
+      <span class="country-flag">🌐</span>
+      <div class="card-head"><span class="tag">Universal</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">What's the best way to ask for exclusivity or category protection without sounding entitled?</p>
+      <p class="card-answer">Tie the ask to a commitment they have to value, not a favor: "As we scale this product line, we'd be interested in discussing exclusivity within [market/category] in exchange for committed minimum annual volumes and a longer-term agreement. Is this something you've structured with other partners, and what would that typically look like on your end?" Asking "what would that look like" instead of "will you give us exclusivity" puts the burden on them to define terms — and most suppliers who've done this before will reveal their own playbook, which you can then negotiate from.</p>
+    </article>
+
+    <article class="card cat-universal">
+      <span class="card-number">149</span>
+      <span class="country-flag">🌐</span>
+      <div class="card-head"><span class="tag">Universal</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">How do I end a supplier relationship that's underperforming without burning the bridge?</p>
+      <p class="card-answer">Keep it factual and forward-looking, never personal: "As we scale, we're consolidating our supplier base around a small number of partners who can match our growth in [specific area — lead time / quality consistency / capacity]. For this next phase, we won't be placing new orders with you, but we'd value staying in touch in case our needs shift or capacity constraints elsewhere create an opportunity to work together again." This closes the door without slamming it — burned bridges in sourcing are expensive because supplier networks talk, and a calm exit keeps you welcome to return if needed.</p>
+    </article>
+
+    <article class="card cat-universal">
+      <span class="card-number">150</span>
+      <span class="country-flag">🌐</span>
+      <div class="card-head"><span class="tag">Universal</span><button class="copy-btn">Copy</button></div>
+      <p class="card-question">What's the one mindset shift that separates buyers who get great deals from buyers who get average ones?</p>
+      <p class="card-answer">Average buyers negotiate price. Great buyers negotiate the whole deal — price, MOQ, payment terms, lead time, exclusivity, and quality guarantees — as one package, and they know which of those they actually care about versus which they're willing to trade away. Before any negotiation, write down your real priorities ranked (e.g., lead time > price > MOQ), then give away the lowest-ranked items as "concessions" to win the ones that matter. Suppliers remember that you "gave something up," even if it cost you nothing — and that goodwill gets banked for the next ask.</p>
+    </article>
+
+  <p class="empty hidden" id="empty">No scripts match that search.</p>
+</main>
+
+<footer>Internal reference — Tako Designs sales scripts</footer>
+
+<script>
+  const cards = document.querySelectorAll('.card');
+  const pills = document.querySelectorAll('.pill');
+  const searchInput = document.getElementById('search');
+  const emptyMsg = document.getElementById('empty');
+  let activeFilter = 'all';
+
+  function applyFilters() {
+    const q = searchInput.value.trim().toLowerCase();
+    let visible = 0;
+    cards.forEach(card => {
+      const matchesCategory = activeFilter === 'all' || card.classList.contains('cat-' + activeFilter) || (activeFilter.startsWith('supplier') && card.classList.contains('cat-' + activeFilter));
+      const matchesSearch = !q || card.textContent.toLowerCase().includes(q);
+      const show = matchesCategory && matchesSearch;
+      card.classList.toggle('hidden', !show);
+      if (show) visible++;
+    });
+    emptyMsg.classList.toggle('hidden', visible !== 0);
+  }
+
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      pills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      activeFilter = pill.dataset.filter;
+      applyFilters();
+    });
+  });
+
+  searchInput.addEventListener('input', applyFilters);
+
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const answer = btn.closest('.card').querySelector('.card-answer').textContent.trim();
+      try {
+        await navigator.clipboard.writeText(answer);
+      } catch (e) {
+        const ta = document.createElement('textarea');
+        ta.value = answer;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
+      const original = btn.textContent;
+      btn.textContent = 'Copied';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.classList.remove('copied');
+      }, 1500);
+    });
+  });
+</script>
+
+</body>
+</html>
